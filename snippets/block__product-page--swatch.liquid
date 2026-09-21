@@ -103,7 +103,7 @@
                                     <div class="luxury-card-top-row">
                                         <span class="luxury-card-title">{{value | escape}}{% unless is_available %} <span class="luxury-soldout-tag">Out of Stock</span>{% endunless %}</span>
                                         {% if var %}
-                                            <span class="luxury-card-price" {% unless is_available %}style="color: #94a3b8; text-decoration: line-through;"{% endunless %}>{{ var.price | money }}</span>
+                                            <span class="luxury-card-price jsPrice" data-price-raw="{{ var.price }}" {% unless is_available %}style="color: #94a3b8; text-decoration: line-through;"{% endunless %}>{{ var.price | money | strip_html | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'Rs ', '₹' }}</span>
                                         {% endif %}
                                     </div>
                                     <span class="luxury-card-subtitle">
@@ -139,7 +139,7 @@
     <h4 class="h-reset swatches__title">Edition / Format</h4>
     <div class="default-edition-card">
         <span class="edition-name">Standard Edition</span>
-        <span class="edition-price">{{ product.price | money }}</span>
+        <span class="edition-price jsPrice" data-price-raw="{{ product.price }}">{{ product.price | money | strip_html | replace: 'Rs. ', '₹' | replace: 'Rs.', '₹' | replace: 'Rs ', '₹' }}</span>
         <span class="edition-badge">In Stock</span>
     </div>
 </div>
