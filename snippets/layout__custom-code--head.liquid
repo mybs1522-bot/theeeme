@@ -931,15 +931,114 @@ body.non-dollar-currency .product__shoppay-installments {
   opacity: 0 !important;
 }
 
-/* 10. Hide/Suppress GDPR Cookie notice */
+/* 10. Hide/Suppress All Cookie Consent, GDPR & Privacy Banners Completely */
 #bstr--notice,
 .gdpr__holder,
-.gdpr__notice {
+.gdpr__notice,
+#shopify-privacy-banner,
+.shopify-privacy-banner,
+shopify-privacy-banner,
+#shopify-customer-privacy-banner,
+.shopify-customer-privacy-banner,
+#shopify-cookie-banner,
+.shopify-cookie-banner,
+.shopify-cookie-consent,
+#shopify-consent-banner,
+[id*="shopify-privacy"],
+[class*="shopify-privacy"],
+[id*="cookie-banner"],
+[class*="cookie-banner"],
+[id*="cookie-consent"],
+[class*="cookie-consent"],
+[id*="cookieconsent"],
+[class*="cookieconsent"],
+[id*="consent-banner"],
+[class*="consent-banner"],
+[aria-label*="Cookie consent"],
+[aria-label*="cookie consent"],
+[aria-label*="Cookie banner"],
+[aria-label*="cookie banner"],
+[aria-label*="privacy banner"],
+[data-privacy-banner],
+.cc-window,
+.cc-banner,
+.cc-floating,
+#onetrust-consent-sdk,
+#CybotCookiebotDialog,
+.osano-cm-window,
+.termly-cookie-banner,
+.consentmo-container {
   display: none !important;
   visibility: hidden !important;
-  pointer-events: none !important;
   opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  z-index: -9999 !important;
+  overflow: hidden !important;
 }
+</style>
+
+<script>
+(function() {
+  function suppressAllCookieBanners() {
+    var selectors = [
+      '#bstr--notice', '.gdpr__holder', '.gdpr__notice',
+      '#shopify-privacy-banner', '.shopify-privacy-banner', 'shopify-privacy-banner',
+      '#shopify-customer-privacy-banner', '.shopify-customer-privacy-banner',
+      '#shopify-cookie-banner', '.shopify-cookie-banner', '.shopify-cookie-consent',
+      '#shopify-consent-banner', '[id*="shopify-privacy"]', '[class*="shopify-privacy"]',
+      '[id*="cookie-banner"]', '[class*="cookie-banner"]', '[id*="cookie-consent"]',
+      '[id*="cookieconsent"]', '[aria-label*="cookie" i]', '[data-privacy-banner]',
+      '.cc-window', '.cc-banner', '#onetrust-consent-sdk', '#CybotCookiebotDialog',
+      '.osano-cm-window', '.termly-cookie-banner', '.consentmo-container'
+    ];
+    selectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) {
+        el.style.setProperty('display', 'none', 'important');
+        el.style.setProperty('visibility', 'hidden', 'important');
+        el.style.setProperty('opacity', '0', 'important');
+        el.style.setProperty('height', '0px', 'important');
+        el.style.setProperty('pointer-events', 'none', 'important');
+      });
+    });
+
+    if (window.Shopify && window.Shopify.customerPrivacy && typeof window.Shopify.customerPrivacy.setTrackingConsent === 'function') {
+      try {
+        window.Shopify.customerPrivacy.setTrackingConsent(true, function() {});
+      } catch(e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', suppressAllCookieBanners);
+  } else {
+    suppressAllCookieBanners();
+  }
+
+  var bannerObserver = new MutationObserver(suppressAllCookieBanners);
+  if (document.body) {
+    bannerObserver.observe(document.body, { childList: true, subtree: true });
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      bannerObserver.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+
+  var attempts = 0;
+  var interval = setInterval(function() {
+    suppressAllCookieBanners();
+    attempts++;
+    if (attempts > 30) clearInterval(interval);
+  }, 200);
+})();
+</script>
+
+<style>
 
 /* 11. Product Title 2-Line Layout & Hero Typography */
 .product__title,
