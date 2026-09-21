@@ -31,6 +31,66 @@
 
     {% render 'layout__favicon' %}
 
+    <script>
+    (function() {
+      try {
+        var exp = new Date(Date.now() + 365 * 864e5).toUTCString();
+        var cmpVal = encodeURIComponent(JSON.stringify({
+          purposes: { a: true, p: true, m: true, t: true },
+          display_banner: false,
+          sale_of_data: true,
+          reg: ""
+        }));
+        document.cookie = "_tracking_consent=true; path=/; expires=" + exp + "; SameSite=Lax";
+        document.cookie = "_cmp_a=" + cmpVal + "; path=/; expires=" + exp + "; SameSite=Lax";
+        localStorage.setItem('_tracking_consent', 'true');
+        localStorage.setItem('_cmp_a', cmpVal);
+        localStorage.setItem('bstr_gdpr', 'true');
+      } catch(e) {}
+    })();
+    </script>
+    <style>
+      shopify-privacy-banner,
+      #shopify-privacy-banner,
+      .shopify-privacy-banner,
+      #shopify-customer-privacy-banner,
+      .shopify-customer-privacy-banner,
+      #shopify-cookie-banner,
+      .shopify-cookie-banner,
+      .shopify-cookie-consent,
+      #shopify-consent-banner,
+      [id*="shopify-privacy"],
+      [class*="shopify-privacy"],
+      [id*="cookie-banner"],
+      [class*="cookie-banner"],
+      [id*="cookie-consent"],
+      [class*="cookie-consent"],
+      [id*="cookieconsent"],
+      [class*="cookieconsent"],
+      [id*="consent-banner"],
+      [class*="consent-banner"],
+      [aria-label*="Cookie" i],
+      [aria-label*="cookie" i],
+      [aria-label*="privacy" i],
+      [data-privacy-banner],
+      #bstr--notice,
+      .gdpr__holder,
+      .gdpr__notice {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        position: absolute !important;
+        top: -99999px !important;
+        left: -99999px !important;
+        z-index: -999999 !important;
+        overflow: hidden !important;
+      }
+    </style>
+
     {{ content_for_header }}
 
     <style>

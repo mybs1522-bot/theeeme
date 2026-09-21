@@ -1004,13 +1004,36 @@ shopify-privacy-banner,
         el.style.setProperty('opacity', '0', 'important');
         el.style.setProperty('height', '0px', 'important');
         el.style.setProperty('pointer-events', 'none', 'important');
+        try { el.remove(); } catch(e) {}
       });
     });
 
-    if (window.Shopify && window.Shopify.customerPrivacy && typeof window.Shopify.customerPrivacy.setTrackingConsent === 'function') {
-      try {
-        window.Shopify.customerPrivacy.setTrackingConsent(true, function() {});
-      } catch(e) {}
+    // Content text matching
+    document.querySelectorAll('div, section, aside, dialog, shopify-privacy-banner').forEach(function(el) {
+      if (el && el.innerText && (
+        el.innerText.includes('We and our partners, including Shopify, use cookies') ||
+        (el.innerText.includes('Cookie consent') && el.innerText.includes('Privacy Policy'))
+      )) {
+        if (el !== document.body && el !== document.documentElement) {
+          el.style.setProperty('display', 'none', 'important');
+          el.style.setProperty('visibility', 'hidden', 'important');
+          el.style.setProperty('opacity', '0', 'important');
+          try { el.remove(); } catch(e) {}
+        }
+      }
+    });
+
+    if (window.Shopify && window.Shopify.customerPrivacy) {
+      if (typeof window.Shopify.customerPrivacy.setTrackingConsent === 'function') {
+        try {
+          window.Shopify.customerPrivacy.setTrackingConsent({
+            analytics: true,
+            marketing: true,
+            preferences: true,
+            sale_of_data: true
+          }, function() {});
+        } catch(e) {}
+      }
     }
   }
 
@@ -1034,7 +1057,7 @@ shopify-privacy-banner,
     suppressAllCookieBanners();
     attempts++;
     if (attempts > 30) clearInterval(interval);
-  }, 200);
+  }, 150);
 })();
 </script>
 
