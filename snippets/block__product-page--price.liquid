@@ -229,25 +229,181 @@
 
     
     {% if product.handle contains 'vastu' %}
-    <div class="vastu-pre-price-text" style="font-family: inherit; margin-bottom: 20px; font-size: 15px; line-height: 1.6; color: #334155; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
-      <p style="margin: 0 0 12px 0; font-weight: 800; color: #000000; font-size: 20px; line-height: 1.3;">अपने घर का वास्तु चेक और सही करें, रहने से पहले या रहने के बाद मौका अभी भी है।</p>
-      <p style="margin: 0 0 10px 0; font-weight: bold; color: #dc2626; font-size: 16px;">🚨 घर बनाने या खरीदने से पहले यह जरूर जानें…</p>
-      <p style="margin: 0 0 10px 0;">कई लोग बिना जांच के घर ले लेते हैं —<br>और बाद में पता चलता है:</p>
-      <ul style="list-style: none; padding: 0; margin: 0 0 15px 0;">
-        <li style="margin-bottom: 5px;">❌ एंट्रेंस गलत दिशा में है</li>
-        <li style="margin-bottom: 5px;">❌ ब्रह्मस्थान ब्लॉक हो चुका है</li>
-        <li style="margin-bottom: 5px;">❌ किचन या बेडरूम गलत जगह है</li>
-        <li style="margin-bottom: 5px;">❌ पूरे घर की ऊर्जा असंतुलित है</li>
-      </ul>
-      <p style="margin: 0 0 15px 0;">👉 और तब सुधार करना <strong>महंगा + मुश्किल</strong> हो जाता है।</p>
-      <p style="margin: 0 0 10px 0; font-weight: bold; color: #059669; font-size: 16px;">✅ अब अंदाज़ा नहीं — सही ज्ञान के साथ निर्णय लें</p>
-      <p style="margin: 0 0 15px 0;">यह कोई सामान्य वास्तु बुक नहीं है।<br>यह एक <strong>Practical Step-by-Step Guide</strong> है<br>जो आपको सिखाती है:</p>
-      <p style="margin: 0 0 15px 0; font-weight: 500;">👉 अपने घर का वास्तु खुद कैसे चेक करें</p>
-      <p style="margin: 0 0 10px 0; font-weight: bold; color: #ea580c; font-size: 16px;">⏳ आज ही क्यों लें?</p>
-      <p style="margin: 0 0 10px 0;">घर एक बार बनता है —<br>लेकिन गलत फैसला सालों तक असर डालता है।</p>
-      <p style="margin: 0 0 15px 0; font-weight: 500;">👉 सही समय पर सही जानकारी = बड़ी बचत</p>
-      <p style="margin: 0 0 10px 0; font-weight: bold; color: #4f46e5; font-size: 16px;">🚀 अब फैसला आपका है</p>
-      <p style="margin: 0;">अंदाज़े से काम करना है…<br>या सही ज्ञान के साथ?</p>
+    <style>
+      .vastu-copy-card {
+        font-family: inherit;
+        margin: 0 0 22px 0;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        line-height: 1.6;
+        color: #1e293b;
+      }
+      .vastu-copy-headline {
+        margin: 0 0 14px 0;
+        font-size: 19px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+      }
+      .vastu-copy-highlight-dark {
+        background: #f1f5f9;
+        padding: 3px 8px;
+        border-radius: 6px;
+        display: inline;
+      }
+      .vastu-copy-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fef2f2;
+        border: 1px solid #fee2e2;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+      .vastu-copy-subhead {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0 0 10px 0;
+      }
+      .vastu-copy-checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 16px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .vastu-copy-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14.5px;
+        background: #f8fafc;
+        border: 1px solid #edf2f7;
+        padding: 9px 12px;
+        border-radius: 8px;
+      }
+      .vastu-copy-item-cross {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fee2e2;
+        font-size: 11px;
+        font-weight: bold;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .vastu-cost-alert {
+        background: #fff7ed;
+        border-left: 4px solid #ea580c;
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        font-size: 14px;
+        margin: 0 0 18px 0;
+      }
+      .vastu-solution-banner {
+        background: #f0fdf4;
+        border: 1px solid #dcfce7;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 18px;
+      }
+      .vastu-solution-pill {
+        display: inline-block;
+        background: #dcfce7;
+        padding: 3px 10px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .vastu-takeaway-banner {
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 14px;
+        margin-top: 14px;
+      }
+      .vastu-tag-mark {
+        background: #fef08a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+      @media (max-width: 480px) {
+        .vastu-copy-headline { font-size: 17px; }
+        .vastu-copy-card { padding: 16px; }
+      }
+    </style>
+
+    <div class="vastu-copy-card">
+      <div class="vastu-copy-headline">
+        अपने घर का वास्तु स्वयं जाँचें और दोषमुक्त करें — <span class="vastu-copy-highlight-dark">गृह प्रवेश से पहले या बाद में, अवसर आज भी आपके पास है।</span>
+      </div>
+
+      <div class="vastu-copy-badge">
+        <span>🚨</span> नया घर निर्मित करने अथवा क्रय करने से पूर्व अनिवार्य चेतावनी
+      </div>
+
+      <p class="vastu-copy-subhead">
+        प्रायः लोग बिना तकनीकी परीक्षण के संपत्ति चुन लेते हैं — और बाद में गंभीर विसंगतियाँ सामने आती हैं:
+      </p>
+
+      <div class="vastu-copy-checklist">
+        <div class="vastu-copy-item">
+          <span class="vastu-copy-item-cross">✕</span>
+          <span><strong>प्रवेश द्वार (Entrance):</strong> अवांछित व नकारात्मक ऊर्जा क्षेत्र में स्थित होना</span>
+        </div>
+        <div class="vastu-copy-item">
+          <span class="vastu-copy-item-cross">✕</span>
+          <span><strong>ब्रह्मस्थान:</strong> केंद्र स्थल पर दीवार, पिलर या भारी निर्माण से ऊर्जा प्रवाह बाधित</span>
+        </div>
+        <div class="vastu-copy-item">
+          <span class="vastu-copy-item-cross">✕</span>
+          <span><strong>रसोई व मुख्य शयनकक्ष:</strong> गलत दिशा में होने से पारिवारिक अशांति व आर्थिक क्षरण</span>
+        </div>
+        <div class="vastu-copy-item">
+          <span class="vastu-copy-item-cross">✕</span>
+          <span><strong>पंचतत्व असंतुलन:</strong> जल, अग्नि, वायु और पृथ्वी तत्वों का परस्पर टकराव</span>
+        </div>
+      </div>
+
+      <div class="vastu-cost-alert">
+        👉 <strong>स्मरण रहे:</strong> निर्माण के उपरांत तोड़-फोड़ अथवा सुधार करना अत्यंत <strong>कठिन, तनावपूर्ण और अत्यधिक खर्चीला</strong> सिद्ध होता है।
+      </div>
+
+      <div class="vastu-solution-banner">
+        <span class="vastu-solution-pill">निर्णय की प्रामाणिकता</span>
+        <div style="font-size: 16px; font-weight: 800; margin-bottom: 6px;">
+          अनुमान पर आधारित भ्रम छोड़ें — प्रमाणित नियमों से सशक्त निर्णय लें
+        </div>
+        <p style="margin: 0; font-size: 14px;">
+          यह कोई साधारण पुस्तक नहीं, अपितु निर्माण और विन्यास की एक <strong>सटीक कार्यप्रणाली (Step-by-Step Blueprint Guide)</strong> है, जो आपको बिना किसी तीसरे व्यक्ति पर निर्भर हुए अपने परिसर का संपूर्ण वास्तु परीक्षण स्वयं करना सिखाती है।
+        </p>
+      </div>
+
+      <div class="vastu-takeaway-banner">
+        <div style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">
+          ⏳ समय रहते यह ज्ञान क्यों अपरिहार्य है?
+        </div>
+        <p style="margin: 0 0 10px 0; font-size: 14px;">
+          जीवन में सपनों का घर बार-बार नहीं बनता — किंतु एक असावधानीपूर्ण निर्णय वर्षों तक सुख, शांति व संचित पूँजी को प्रभावित कर सकता है।
+        </p>
+        <div style="font-size: 14.5px; font-weight: 700; margin-bottom: 12px;">
+          👉 <span class="vastu-tag-mark">समय पर सही वैज्ञानिक जानकारी = जीवनभर की निश्चिंतता एवं लाखों की बचत</span>
+        </div>
+        <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; font-size: 14px;">
+          <strong>अब चुनाव आपका है:</strong> क्या अनिश्चितताओं और सुनी-सुनाई बातों के भरोसे रहना है… अथवा वास्तु के प्रामाणिक ज्ञान के साथ सुरक्षित भविष्य रचना है?
+        </div>
+      </div>
     </div>
     {% endif %}
 
