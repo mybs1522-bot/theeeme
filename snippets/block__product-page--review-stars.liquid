@@ -31,6 +31,78 @@
     <span class="rating-bestseller-badge">Verified Readers</span>
   </div>
 
+  {% if product.handle contains 'vastu' %}
+  <!-- Vastu Page Motion Slider -->
+  <div class="vastu-pages-slider-wrap" onclick="scrollToProductReviews(event);">
+    <div class="vastu-pages-slider-track">
+      {% for media in product.media %}
+        <div class="vastu-page-item">
+          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+        </div>
+      {% endfor %}
+      {% for media in product.media %}
+        <div class="vastu-page-item">
+          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+        </div>
+      {% endfor %}
+      {% for media in product.media %}
+        <div class="vastu-page-item">
+          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+        </div>
+      {% endfor %}
+      {% for media in product.media %}
+        <div class="vastu-page-item">
+          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <style>
+    .vastu-pages-slider-wrap {
+      margin: 15px 0 8px 0;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      cursor: pointer;
+    }
+    .vastu-pages-slider-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: max-content;
+      animation: marqueeLeftToRight 15s linear infinite;
+    }
+    .vastu-pages-slider-track:hover {
+      animation-play-state: paused;
+    }
+    .vastu-page-item {
+      flex: 0 0 clamp(75px, 22vw, 110px);
+      width: clamp(75px, 22vw, 110px);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .vastu-page-item:hover {
+      transform: scale(1.05);
+      border-color: #ea580c;
+    }
+    .vastu-page-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    @keyframes marqueeLeftToRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+  </style>
+  {% else %}
   <!-- 6 Books Showcase with Zoom Ripple Animation -->
   <div class="top-rating-books-ripple-wrap">
     <div class="top-rating-books-track">
@@ -75,9 +147,10 @@
         </div>
         <span class="top-rating-book-name">Exteriors</span>
         <span class="top-rating-book-pages">150+ Pages</span>
-      </div>
+            </div>
     </div>
   </div>
+  {% endif %}
 </div>
 
 <script>
