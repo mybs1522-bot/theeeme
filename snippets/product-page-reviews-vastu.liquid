@@ -1,0 +1,562 @@
+{% comment %}
+  Ultra-Premium रिव्युज Tab Component
+  436 Verified ग्राहकों की राय with 6-per-page Pagination
+{% endcomment %}
+
+<div id="bstr-reviews-component" class="bstr-rev-root">
+  <style>
+    .bstr-rev-root {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #111827;
+      padding: 10px 20px 50px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .bstr-rev-root * {
+      box-sizing: border-box;
+    }
+
+    /* Overall Summary Card */
+    .bstr-rev-summary {
+      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      border: 1px solid #e5e7eb;
+      border-radius: 24px;
+      padding: 36px 40px;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .bstr-rev-summary {
+        flex-direction: column;
+        padding: 24px 20px;
+        gap: 28px;
+        text-align: center;
+      }
+    }
+
+    .bstr-rev-score-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 200px;
+      border-right: 1px solid #f3f4f6;
+      padding-right: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .bstr-rev-score-col {
+        border-right: none;
+        border-bottom: 1px solid #f3f4f6;
+        padding-right: 0;
+        padding-bottom: 24px;
+        align-items: center;
+        width: 100%;
+      }
+    }
+
+    .bstr-rev-big-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      color: #111827;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .bstr-rev-gold-stars {
+      color: #f59e0b;
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .bstr-rev-count-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: #4b5563;
+    }
+
+    .bstr-rev-recommend-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #059669;
+      background: #ecfdf5;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Breakdown Bars */
+    .bstr-rev-bars-col {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bstr-rev-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .bstr-rev-bar-label {
+      width: 52px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bstr-rev-bar-track {
+      flex: 1;
+      height: 9px;
+      background: #e5e7eb;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bstr-rev-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b 0%, #ea580c 100%);
+      border-radius: 9999px;
+    }
+
+    .bstr-rev-bar-pct {
+      width: 38px;
+      font-size: 12px;
+      color: #6b7280;
+      flex-shrink: 0;
+    }
+
+    /* Filter & Header Bar */
+    .bstr-rev-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f3f4f6;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .bstr-rev-total-label {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .bstr-rev-sort-select {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Reviews List (6 per page) */
+    .bstr-rev-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bstr-rev-card {
+      background: #ffffff;
+      border: 1px solid #f3f4f6;
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .bstr-rev-card:hover {
+      border-color: #fed7aa;
+      box-shadow: 0 8px 25px rgba(234, 88, 12, 0.06);
+    }
+
+    @media (max-width: 640px) {
+      .bstr-rev-card {
+        padding: 18px 16px;
+      }
+    }
+
+    .bstr-rev-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .bstr-rev-author-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bstr-rev-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+      color: #ea580c;
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid #fdba74;
+    }
+
+    .bstr-rev-author-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .bstr-rev-verified-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #059669;
+      background: #ecfdf5;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      border: 1px solid #a7f3d0;
+    }
+
+    .bstr-rev-meta {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .bstr-rev-stars-item {
+      color: #f59e0b;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .bstr-rev-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+      margin: 6px 0 8px;
+      line-height: 1.35;
+    }
+
+    .bstr-rev-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #374151;
+      margin: 0 0 16px;
+    }
+
+    .bstr-rev-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid #f9fafb;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .bstr-rev-helpful-btn {
+      background: none;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4b5563;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .bstr-rev-helpful-btn:hover {
+      background: #f9fafb;
+      border-color: #d1d5db;
+      color: #111827;
+    }
+
+    /* Pagination */
+    .bstr-rev-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .bstr-rev-page-btn {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      font-weight: 700;
+      color: #374151;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bstr-rev-page-btn:hover:not(:disabled) {
+      background: #f9fafb;
+      border-color: #ea580c;
+      color: #ea580c;
+    }
+
+    .bstr-rev-page-btn.active {
+      background: #ea580c;
+      border-color: #ea580c;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    }
+
+    .bstr-rev-page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .bstr-rev-dots {
+      padding: 0 4px;
+      color: #9ca3af;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Summary Card -->
+  <div class="bstr-rev-summary">
+    <div class="bstr-rev-score-col">
+      <div class="bstr-rev-big-num">4.9</div>
+      <div class="bstr-rev-gold-stars">★★★★★</div>
+      <div class="bstr-rev-count-badge">Based on 2,324 Ratings</div>
+      <div class="bstr-rev-recommend-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        98% recommend this
+      </div>
+    </div>
+
+    <div class="bstr-rev-bars-col">
+      <div class="bstr-rev-bar-row">
+        <span class="bstr-rev-bar-label">5 Star</span>
+        <div class="bstr-rev-bar-track"><div class="bstr-rev-bar-fill" style="width: 92%;"></div></div>
+        <span class="bstr-rev-bar-pct">92%</span>
+      </div>
+      <div class="bstr-rev-bar-row">
+        <span class="bstr-rev-bar-label">4 Star</span>
+        <div class="bstr-rev-bar-track"><div class="bstr-rev-bar-fill" style="width: 6%;"></div></div>
+        <span class="bstr-rev-bar-pct">6%</span>
+      </div>
+      <div class="bstr-rev-bar-row">
+        <span class="bstr-rev-bar-label">3 Star</span>
+        <div class="bstr-rev-bar-track"><div class="bstr-rev-bar-fill" style="width: 2%;"></div></div>
+        <span class="bstr-rev-bar-pct">2%</span>
+      </div>
+      <div class="bstr-rev-bar-row">
+        <span class="bstr-rev-bar-label">2 Star</span>
+        <div class="bstr-rev-bar-track"><div class="bstr-rev-bar-fill" style="width: 0%;"></div></div>
+        <span class="bstr-rev-bar-pct">0%</span>
+      </div>
+      <div class="bstr-rev-bar-row">
+        <span class="bstr-rev-bar-label">1 Star</span>
+        <div class="bstr-rev-bar-track"><div class="bstr-rev-bar-fill" style="width: 0%;"></div></div>
+        <span class="bstr-rev-bar-pct">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Controls -->
+  <div class="bstr-rev-controls-bar">
+    <div class="bstr-rev-total-label" id="bstrRevHeaderCount">दिखा रहे हैं 1–6 में से 436 Reviews</div>
+    <div>
+      <select class="bstr-rev-sort-select" onchange="bstrChangeSort(this.value)">
+        <option value="recent">Most Recent</option>
+        <option value="highest">Highest Rating</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Reviews Container -->
+  <div class="bstr-rev-list" id="bstrReviewsContainer">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="bstr-rev-pagination" id="bstrRevPagination">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <script>
+    (function() {
+      var ALL_REVIEWS = [{"id":1,"name":"साक्षी वर्मा","loc":"लखनऊ, भारत","ed":1,"d":"Sep 20, 2026","s":5,"t":"ब्रह्मस्थान का ज्ञान बहुत काम आया","b":"किताब पढ़कर सबसे पहले मैंने घर का ब्रह्मस्थान निकाला — पता चला वहीं भारी अलमारी रखी थी। हटा दी। कुछ ही दिनों में घर हल्का सा लगने लगा। सबसे अच्छी बात, ये सब मैंने खुद किया।","h":42},{"id":2,"name":"स्नेहा शर्मा","loc":"दिल्ली, भारत","ed":0,"d":"Sep 18, 2026","s":5,"t":"बिना खर्च के वास्तु सुधार","b":"मुझे लगता था वास्तु मतलब पंडित जी को बुलाओ और तोड़-फोड़ कराओ। यहाँ तो बस मुख्य द्वार के पास की चीज़ें और पूजा स्थान की दिशा ठीक करनी थी। एक रुपया खर्च नहीं हुआ।","h":35},{"id":3,"name":"विक्रम सिंह","loc":"जयपुर, भारत","ed":1,"d":"Sep 15, 2026","s":5,"t":"मुफ़्त वीडियो कोर्स कमाल का है","b":"वीडियो कोर्स ने काम आसान कर दिया। मोबाइल से दिशा नापना पढ़कर ठीक से समझ नहीं आया था, वीडियो में करके दिखाया तो पाँच मिनट में हो गया। दोनों साथ मिलना बड़ी बात है।","h":28},{"id":4,"name":"अमित पाटिल","loc":"पुणे, भारत","ed":1,"d":"Sep 12, 2026","s":5,"t":"32 प्रवेश द्वार की सटीक जानकारी","b":"32 प्रवेश द्वार वाला हिस्सा सबसे काम का लगा। पहली बार पता चला कि मेरे घर का दरवाज़ा किस पद पर है और उसका असर क्या होता है। इतनी डिटेल आज तक कहीं नहीं मिली थी।","h":50},{"id":5,"name":"पूजा नायर","loc":"मुंबई, भारत","ed":0,"d":"Sep 10, 2026","s":5,"t":"फ्लैट के लिए बेहतरीन","b":"फ्लैट में रहती हूँ, सोचती थी वास्तु मेरे लिए है ही नहीं। किचन और बेडरूम की व्यवस्था किताब के हिसाब से बदली — दो-तीन हफ़्ते में घर का माहौल शांत लगने लगा, नींद भी पहले से बेहतर है।","h":33},{"id":6,"name":"रवि कुमार","loc":"इंदौर, भारत","ed":1,"d":"Sep 08, 2026","s":4,"t":"प्रोफेशनल रिपोर्ट बनाना सीखा","b":"मैं आर्किटेक्चर का छात्र हूँ और इस किताब ने मुझे वो सिखाया जो कॉलेज में नहीं बताया जाता। अब मैं क्लाइंट्स को सटीक वास्तु रिपोर्ट बनाकर दे सकता हूँ।","h":21},{"id":7,"name":"मीना देवी","loc":"पटना, भारत","ed":0,"d":"Sep 05, 2026","s":5,"t":"रंगों का महत्व समझ आया","b":"किताब में हर दिशा के लिए शुभ रंगों के बारे में बहुत अच्छे से बताया गया है। मैंने अपने बेडरूम का रंग बदला और अब वहाँ बहुत शांति महसूस होती है।","h":19},{"id":8,"name":"सुनील जोशी","loc":"अहमदाबाद, भारत","ed":1,"d":"Sep 02, 2026","s":5,"t":"पैसों की कीमत वसूल","b":"हार्डकॉपी की क्वालिटी बहुत अच्छी है। प्रिंटिंग शानदार है और चित्र बहुत स्पष्ट हैं। साथ में ई-बुक और कोर्स फ्री मिलना इसे एक शानदार डील बनाता है।","h":45},{"id":9,"name":"कविता सिंह","loc":"चंडीगढ़, भारत","ed":0,"d":"Aug 28, 2026","s":5,"t":"सरल और स्पष्ट भाषा","b":"वास्तु की भाषा अक्सर बहुत कठिन होती है, लेकिन यह किताब बहुत ही सरल हिंदी में लिखी गई है। कोई भी इसे आसानी से समझ सकता है।","h":27},{"id":10,"name":"दिनेश राजपूत","loc":"भोपाल, भारत","ed":1,"d":"Aug 25, 2026","s":5,"t":"नक्शा पढ़ना आसान हो गया","b":"नया घर खरीदने से पहले मैंने इस किताब को पढ़ा। अब मैं सिर्फ नक्शा देखकर ही घर के वास्तु दोष पहचान लेता हूँ। बहुत ही प्रैक्टिकल जानकारी है।","h":31},{"id":11,"name":"अंजली मेहता","loc":"सूरत, भारत","ed":0,"d":"Aug 20, 2026","s":4,"t":"धन क्षेत्र के उपाय","b":"उत्तर दिशा (धन क्षेत्र) को सक्रिय करने के जो उपाय दिए गए हैं, वो बहुत ही आसान और व्यावहारिक हैं। मैंने उन्हें लागू किया है और अच्छे बदलाव देख रही हूँ।","h":38},{"id":12,"name":"मनोज तिवारी","loc":"वाराणसी, भारत","ed":1,"d":"Aug 15, 2026","s":5,"t":"कोई अंधविश्वास नहीं","b":"सबसे अच्छी बात यह है कि इस किताब में डराया नहीं गया है, बल्कि लॉजिक के साथ चीजें समझाई गई हैं। बिना तोड़-फोड़ के वास्तु सुधारना संभव है, यह बात मुझे बहुत अच्छी लगी।","h":55}];
+      var REVIEWS_PER_PAGE = 6;
+      var currentPage = 1;
+      var currentSort = 'recent';
+
+      function renderStars(count) {
+        var s = '';
+        for (var i = 0; i < count; i++) s += '★';
+        return s;
+      }
+
+      function getSortedReviews() {
+        var copy = ALL_REVIEWS.slice();
+        if (currentSort === 'highest') {
+          copy.sort(function(a, b) { return b.s - a.s; });
+        }
+        return copy;
+      }
+
+      function renderPage(page) {
+        currentPage = page;
+        var data = getSortedReviews();
+        var totalPages = Math.ceil(data.length / REVIEWS_PER_PAGE);
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        var startIdx = (currentPage - 1) * REVIEWS_PER_PAGE;
+        var endIdx = Math.min(startIdx + REVIEWS_PER_PAGE, data.length);
+        var pageItems = data.slice(startIdx, endIdx);
+
+        // Update count header
+        var countEl = document.getElementById('bstrRevHeaderCount');
+        if (countEl) {
+          countEl.innerText = 'Showing ' + (startIdx + 1) + '–' + endIdx + ' of ' + data.length + ' Reviews';
+        }
+
+        // Render reviews HTML
+        var container = document.getElementById('bstrReviewsContainer');
+        if (container) {
+          var html = '';
+          pageItems.forEach(function(r) {
+            var inits = r.name.split(' ').map(function(w){return w[0];}).join('');
+            var edText = r.ed === 1 ? "Hardcopy + Softcopy + Video Course" : "Softcopy + Video Course";
+            html += '<div class="bstr-rev-card">';
+            html += '  <div class="bstr-rev-card-header">';
+            html += '    <div class="bstr-rev-author-info">';
+            html += '      <div class="bstr-rev-avatar">' + inits + '</div>';
+            html += '      <div>';
+            html += '        <div class="bstr-rev-author-name">';
+            html += '          <span>' + r.name + '</span>';
+            html += '          <span class="bstr-rev-verified-pill">';
+            html += '            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            html += '            वेरीफाइड ख़रीदार';
+            html += '          </span>';
+            html += '        </div>';
+            html += '        <div class="bstr-rev-meta">' + edText + ' · ' + r.loc + ' · ' + r.d + '</div>';
+            html += '      </div>';
+            html += '    </div>';
+            html += '    <div class="bstr-rev-stars-item">' + renderStars(r.s) + '</div>';
+            html += '  </div>';
+            html += '  <div class="bstr-rev-title">"' + r.t + '"</div>';
+            html += '  <div class="bstr-rev-body">' + r.b + '</div>';
+            html += '  <div class="bstr-rev-card-footer">';
+            html += '    <span>रिव्यू किया गया: ' + r.d + '</span>';
+            html += '    <button type="button" class="bstr-rev-helpful-btn" onclick="this.innerHTML=\'✓ मददगार (' + (r.h + 1) + ')\'">👍 Helpful (' + r.h + ')</button>';
+            html += '  </div>';
+            html += '</div>';
+          });
+          container.innerHTML = html;
+        }
+
+        // Render Pagination
+        renderPagination(totalPages);
+      }
+
+      function renderPagination(totalPages) {
+        var pagEl = document.getElementById('bstrRevPagination');
+        if (!pagEl) return;
+
+        var html = '';
+        
+        // पीछे button
+        html += '<button type="button" class="bstr-rev-page-btn" ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="bstrGoToPage(' + (currentPage - 1) + ')">← Prev</button>';
+
+        // Pages numbers (smart window)
+        var maxButtons = 7;
+        var startPage = Math.max(1, currentPage - 2);
+        var endPage = Math.min(totalPages, startPage + 4);
+        if (endPage - startPage < 4) {
+          startPage = Math.max(1, endPage - 4);
+        }
+
+        if (startPage > 1) {
+          html += '<button type="button" class="bstr-rev-page-btn" onclick="bstrGoToPage(1)">1</button>';
+          if (startPage > 2) html += '<span class="bstr-rev-dots">...</span>';
+        }
+
+        for (var p = startPage; p <= endPage; p++) {
+          html += '<button type="button" class="bstr-rev-page-btn ' + (p === currentPage ? 'active' : '') + '" onclick="bstrGoToPage(' + p + ')">' + p + '</button>';
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) html += '<span class="bstr-rev-dots">...</span>';
+          html += '<button type="button" class="bstr-rev-page-btn" onclick="bstrGoToPage(' + totalPages + ')">' + totalPages + '</button>';
+        }
+
+        // आगे button
+        html += '<button type="button" class="bstr-rev-page-btn" ' + (currentPage === totalPages ? 'disabled' : '') + ' onclick="bstrGoToPage(' + (currentPage + 1) + ')">Next →</button>';
+
+        pagEl.innerHTML = html;
+      }
+
+      window.bstrGoToPage = function(p) {
+        renderPage(p);
+        var comp = document.getElementById('bstr-reviews-component');
+        if (comp) {
+          var y = comp.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+
+      window.bstrChangeSort = function(val) {
+        currentSort = val;
+        renderPage(1);
+      };
+
+      // Initial render
+      renderPage(1);
+    })();
+  </script>
+</div>
