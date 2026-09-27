@@ -230,125 +230,196 @@
     
     {% if product.handle contains 'vastu' %}
     <style>
-      .vastu-compact-card {
+      .vastu-flow-box {
         font-family: inherit;
         margin: 0 0 16px 0;
         background: #ffffff;
         border: 1px solid #e2e8f0;
         border-radius: 10px;
-        padding: 14px 16px;
-        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
         color: #1e293b;
-        line-height: 1.5;
+        line-height: 1.55;
       }
-      .vastu-compact-head {
-        font-size: 15.5px;
+      .vastu-flow-hero {
+        font-size: 16.5px;
         font-weight: 700;
-        margin-bottom: 10px;
-        line-height: 1.35;
+        line-height: 1.4;
+        margin-bottom: 12px;
       }
-      .vastu-compact-hl {
+      .vastu-hl-tag {
         background: #fef08a;
         padding: 1px 5px;
         border-radius: 4px;
+        font-weight: 700;
       }
-      .vastu-tag-warning {
+      .vastu-alert-chip {
         display: inline-flex;
         align-items: center;
         gap: 5px;
         background: #fef2f2;
-        padding: 3px 8px;
+        border: 1px solid #fee2e2;
+        padding: 4px 10px;
         border-radius: 6px;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 13.5px;
+        margin-bottom: 10px;
+      }
+      .vastu-flow-lead {
+        font-size: 13.5px;
         margin-bottom: 8px;
+        color: #334155;
       }
-      .vastu-simple-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
+      .vastu-flow-mistakes {
+        list-style: none;
+        padding: 0;
         margin: 0 0 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
       }
-      .vastu-simple-item {
+      .vastu-flow-mistakes li {
+        font-size: 13px;
         background: #f8fafc;
-        border: 1px solid #edf2f7;
+        border: 1px solid #f1f5f9;
         padding: 6px 10px;
         border-radius: 6px;
-        font-size: 12.5px;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
       }
-      .vastu-simple-x {
+      .vastu-x-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 16px;
-        height: 16px;
+        width: 17px;
+        height: 17px;
         border-radius: 50%;
         background: #fee2e2;
-        font-size: 9.5px;
-        font-weight: 800;
+        font-size: 10px;
+        font-weight: bold;
         flex-shrink: 0;
       }
-      .vastu-callout-strip {
-        background: #f0fdf4;
-        border-left: 3px solid #16a34a;
-        padding: 8px 12px;
+      .vastu-warn-strip {
+        background: #fff7ed;
+        border-left: 3px solid #ea580c;
+        padding: 6px 10px;
         border-radius: 0 6px 6px 0;
         font-size: 13px;
-        margin-bottom: 10px;
+        margin-bottom: 14px;
       }
-      .vastu-cta-line {
+      .vastu-solution-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f0fdf4;
+        border: 1px solid #dcfce7;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 13.5px;
+        margin-bottom: 8px;
+      }
+      .vastu-solution-text {
         font-size: 13px;
-        padding-top: 8px;
-        border-top: 1px dashed #e2e8f0;
+        margin-bottom: 14px;
+        padding-left: 4px;
       }
-      @media (max-width: 520px) {
-        .vastu-simple-list {
-          grid-template-columns: 1fr;
-          gap: 5px;
+      .vastu-why-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fffbeb;
+        border: 1px solid #fef3c7;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 13.5px;
+        margin-bottom: 8px;
+      }
+      .vastu-closing-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 13px;
+        margin-top: 10px;
+      }
+      @media (max-width: 480px) {
+        .vastu-flow-box {
+          padding: 12px 14px;
         }
-        .vastu-compact-card {
-          padding: 12px;
+        .vastu-flow-hero {
+          font-size: 15px;
         }
       }
     </style>
 
-    <div class="vastu-compact-card">
-      <div class="vastu-compact-head">
-        अपने घर का वास्तु खुद चेक करें — <span class="vastu-compact-hl">नया घर लेने से पहले या रहने के बाद भी!</span>
+    <div class="vastu-flow-box">
+      <!-- 1. Top Hook Headline -->
+      <div class="vastu-flow-hero">
+        अपने घर का वास्तु चेक और सही करें, <span class="vastu-hl-tag">रहने से पहले या रहने के बाद मौका अभी भी है।</span>
       </div>
 
-      <div class="vastu-tag-warning">
-        🚨 घर लेने या बनाने से पहले 1 बार जरूर देखें
+      <!-- 2. Problem Warning -->
+      <div class="vastu-alert-chip">
+        🚨 घर बनाने या खरीदने से पहले यह जरूर जानें…
       </div>
 
-      <div class="vastu-simple-list">
-        <div class="vastu-simple-item">
-          <span class="vastu-simple-x">✕</span>
-          <span>मेन गेट गलत दिशा में होना</span>
-        </div>
-        <div class="vastu-simple-item">
-          <span class="vastu-simple-x">✕</span>
-          <span>घर का केंद्र (ब्रह्मस्थान) भारी होना</span>
-        </div>
-        <div class="vastu-simple-item">
-          <span class="vastu-simple-x">✕</span>
-          <span>किचन या बेडरूम गलत जगह</span>
-        </div>
-        <div class="vastu-simple-item">
-          <span class="vastu-simple-x">✕</span>
-          <span>बिना तोड़-फोड़ ठीक न कर पाना</span>
-        </div>
+      <div class="vastu-flow-lead">
+        कई लोग बिना जांच के घर ले लेते हैं — और बाद में पता चलता है:
       </div>
 
-      <div class="vastu-callout-strip">
-        💡 <strong>बाद में तोड़-फोड़ करने से अच्छा है, आज ही सही जानकारी होना।</strong> यह प्रैक्टिकल बुक आपको हर कमरे का वास्तु खुद जाँचना सिखाती है — बिना किसी महंगे एक्सपर्ट के।
+      <ul class="vastu-flow-mistakes">
+        <li>
+          <span class="vastu-x-icon">✕</span>
+          <span>एंट्रेंस गलत दिशा में है</span>
+        </li>
+        <li>
+          <span class="vastu-x-icon">✕</span>
+          <span>ब्रह्मस्थान ब्लॉक हो चुका है</span>
+        </li>
+        <li>
+          <span class="vastu-x-icon">✕</span>
+          <span>किचन या बेडरूम गलत जगह है</span>
+        </li>
+        <li>
+          <span class="vastu-x-icon">✕</span>
+          <span>पूरे घर की ऊर्जा असंतुलित है</span>
+        </li>
+      </ul>
+
+      <div class="vastu-warn-strip">
+        👉 और तब सुधार करना <strong>महंगा + मुश्किल</strong> हो जाता है।
       </div>
 
-      <div class="vastu-cta-line">
-        👉 <strong>घर बार-बार नहीं बनता:</strong> सही निर्णय लें और सालों की मानसिक शांति व लाखों की बचत पाएं।
+      <!-- 3. Solution -->
+      <div class="vastu-solution-chip">
+        ✅ अब अंदाज़ा नहीं — सही ज्ञान के साथ निर्णय लें
+      </div>
+
+      <div class="vastu-solution-text">
+        यह कोई सामान्य वास्तु बुक नहीं है। यह एक <strong>Practical Step-by-Step Guide</strong> है जो आपको सिखाती है:<br>
+        <strong>👉 अपने घर का वास्तु खुद कैसे चेक करें</strong>
+      </div>
+
+      <!-- 4. Why Today & Decision -->
+      <div class="vastu-why-chip">
+        ⏳ आज ही क्यों लें?
+      </div>
+
+      <div style="font-size: 13px; margin-bottom: 8px; padding-left: 4px;">
+        घर एक बार बनता है — लेकिन गलत फैसला सालों तक असर डालता है।<br>
+        <strong>👉 सही समय पर सही जानकारी = बड़ी बचत</strong>
+      </div>
+
+      <div class="vastu-closing-card">
+        <div style="font-weight: 700; margin-bottom: 4px; font-size: 13.5px;">
+          🚀 अब फैसला आपका है
+        </div>
+        <div>
+          अंदाज़े से काम करना है… या <strong>सही ज्ञान के साथ?</strong>
+        </div>
       </div>
     </div>
     {% endif %}
