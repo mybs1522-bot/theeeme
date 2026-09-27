@@ -227,7 +227,30 @@
     </div>
     {% endif %}
 
-    <div 
+    
+    {% if product.handle contains 'vastu' %}
+    <div class="vastu-pre-price-text" style="font-family: inherit; margin-bottom: 20px; font-size: 15px; line-height: 1.6; color: #334155; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+      <p style="margin: 0 0 10px 0; font-weight: bold; color: #dc2626; font-size: 16px;">🚨 घर बनाने या खरीदने से पहले यह जरूर जानें…</p>
+      <p style="margin: 0 0 10px 0;">कई लोग बिना जांच के घर ले लेते हैं —<br>और बाद में पता चलता है:</p>
+      <ul style="list-style: none; padding: 0; margin: 0 0 15px 0;">
+        <li style="margin-bottom: 5px;">❌ एंट्रेंस गलत दिशा में है</li>
+        <li style="margin-bottom: 5px;">❌ ब्रह्मस्थान ब्लॉक हो चुका है</li>
+        <li style="margin-bottom: 5px;">❌ किचन या बेडरूम गलत जगह है</li>
+        <li style="margin-bottom: 5px;">❌ पूरे घर की ऊर्जा असंतुलित है</li>
+      </ul>
+      <p style="margin: 0 0 15px 0;">👉 और तब सुधार करना <strong>महंगा + मुश्किल</strong> हो जाता है।</p>
+      <p style="margin: 0 0 10px 0; font-weight: bold; color: #059669; font-size: 16px;">✅ अब अंदाज़ा नहीं — सही ज्ञान के साथ निर्णय लें</p>
+      <p style="margin: 0 0 15px 0;">यह कोई सामान्य वास्तु बुक नहीं है।<br>यह एक <strong>Practical Step-by-Step Guide</strong> है<br>जो आपको सिखाती है:</p>
+      <p style="margin: 0 0 15px 0; font-weight: 500;">👉 अपने घर का वास्तु खुद कैसे चेक करें</p>
+      <p style="margin: 0 0 10px 0; font-weight: bold; color: #ea580c; font-size: 16px;">⏳ आज ही क्यों लें?</p>
+      <p style="margin: 0 0 10px 0;">घर एक बार बनता है —<br>लेकिन गलत फैसला सालों तक असर डालता है।</p>
+      <p style="margin: 0 0 15px 0; font-weight: 500;">👉 सही समय पर सही जानकारी = बड़ी बचत</p>
+      <p style="margin: 0 0 10px 0; font-weight: bold; color: #4f46e5; font-size: 16px;">🚀 अब फैसला आपका है</p>
+      <p style="margin: 0;">अंदाज़े से काम करना है…<br>या सही ज्ञान के साथ?</p>
+    </div>
+    {% endif %}
+
+<div 
     class="product__price--holder product__price--{{block.id}}
     font__family--{{-block.settings.fontFamily}} font__size--{{-block.settings.fontSize}} 
     {% if block.settings.noMargin or noMargin %}margin__bottom--reduced{%endif-%}" {{block.shopify_attributes}}>
