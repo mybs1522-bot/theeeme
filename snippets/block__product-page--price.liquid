@@ -230,179 +230,125 @@
     
     {% if product.handle contains 'vastu' %}
     <style>
-      .vastu-copy-card {
+      .vastu-compact-card {
         font-family: inherit;
-        margin: 0 0 22px 0;
+        margin: 0 0 16px 0;
         background: #ffffff;
         border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-        line-height: 1.6;
-        color: #1e293b;
-      }
-      .vastu-copy-headline {
-        margin: 0 0 14px 0;
-        font-size: 19px;
-        font-weight: 800;
-        line-height: 1.35;
-        letter-spacing: -0.01em;
-      }
-      .vastu-copy-highlight-dark {
-        background: #f1f5f9;
-        padding: 3px 8px;
-        border-radius: 6px;
-        display: inline;
-      }
-      .vastu-copy-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #fef2f2;
-        border: 1px solid #fee2e2;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 13px;
-        margin-bottom: 12px;
-      }
-      .vastu-copy-subhead {
-        font-size: 15px;
-        font-weight: 600;
-        margin: 0 0 10px 0;
-      }
-      .vastu-copy-checklist {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 16px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .vastu-copy-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        font-size: 14.5px;
-        background: #f8fafc;
-        border: 1px solid #edf2f7;
-        padding: 9px 12px;
-        border-radius: 8px;
-      }
-      .vastu-copy-item-cross {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #fee2e2;
-        font-size: 11px;
-        font-weight: bold;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-      .vastu-cost-alert {
-        background: #fff7ed;
-        border-left: 4px solid #ea580c;
-        padding: 10px 14px;
-        border-radius: 0 8px 8px 0;
-        font-size: 14px;
-        margin: 0 0 18px 0;
-      }
-      .vastu-solution-banner {
-        background: #f0fdf4;
-        border: 1px solid #dcfce7;
         border-radius: 10px;
         padding: 14px 16px;
-        margin-bottom: 18px;
+        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+        color: #1e293b;
+        line-height: 1.5;
       }
-      .vastu-solution-pill {
-        display: inline-block;
-        background: #dcfce7;
-        padding: 3px 10px;
-        border-radius: 14px;
+      .vastu-compact-head {
+        font-size: 15.5px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+      .vastu-compact-hl {
+        background: #fef08a;
+        padding: 1px 5px;
+        border-radius: 4px;
+      }
+      .vastu-tag-warning {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fef2f2;
+        padding: 3px 8px;
+        border-radius: 6px;
         font-weight: 700;
         font-size: 12px;
         margin-bottom: 8px;
       }
-      .vastu-takeaway-banner {
+      .vastu-simple-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        margin: 0 0 10px 0;
+      }
+      .vastu-simple-item {
         background: #f8fafc;
-        border-top: 1px solid #e2e8f0;
-        padding-top: 14px;
-        margin-top: 14px;
+        border: 1px solid #edf2f7;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
-      .vastu-tag-mark {
-        background: #fef08a;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-weight: 700;
+      .vastu-simple-x {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fee2e2;
+        font-size: 9.5px;
+        font-weight: 800;
+        flex-shrink: 0;
       }
-      @media (max-width: 480px) {
-        .vastu-copy-headline { font-size: 17px; }
-        .vastu-copy-card { padding: 16px; }
+      .vastu-callout-strip {
+        background: #f0fdf4;
+        border-left: 3px solid #16a34a;
+        padding: 8px 12px;
+        border-radius: 0 6px 6px 0;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+      .vastu-cta-line {
+        font-size: 13px;
+        padding-top: 8px;
+        border-top: 1px dashed #e2e8f0;
+      }
+      @media (max-width: 520px) {
+        .vastu-simple-list {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+        .vastu-compact-card {
+          padding: 12px;
+        }
       }
     </style>
 
-    <div class="vastu-copy-card">
-      <div class="vastu-copy-headline">
-        अपने घर का वास्तु स्वयं जाँचें और दोषमुक्त करें — <span class="vastu-copy-highlight-dark">गृह प्रवेश से पहले या बाद में, अवसर आज भी आपके पास है।</span>
+    <div class="vastu-compact-card">
+      <div class="vastu-compact-head">
+        अपने घर का वास्तु खुद चेक करें — <span class="vastu-compact-hl">नया घर लेने से पहले या रहने के बाद भी!</span>
       </div>
 
-      <div class="vastu-copy-badge">
-        <span>🚨</span> नया घर निर्मित करने अथवा क्रय करने से पूर्व अनिवार्य चेतावनी
+      <div class="vastu-tag-warning">
+        🚨 घर लेने या बनाने से पहले 1 बार जरूर देखें
       </div>
 
-      <p class="vastu-copy-subhead">
-        प्रायः लोग बिना तकनीकी परीक्षण के संपत्ति चुन लेते हैं — और बाद में गंभीर विसंगतियाँ सामने आती हैं:
-      </p>
-
-      <div class="vastu-copy-checklist">
-        <div class="vastu-copy-item">
-          <span class="vastu-copy-item-cross">✕</span>
-          <span><strong>प्रवेश द्वार (Entrance):</strong> अवांछित व नकारात्मक ऊर्जा क्षेत्र में स्थित होना</span>
+      <div class="vastu-simple-list">
+        <div class="vastu-simple-item">
+          <span class="vastu-simple-x">✕</span>
+          <span>मेन गेट गलत दिशा में होना</span>
         </div>
-        <div class="vastu-copy-item">
-          <span class="vastu-copy-item-cross">✕</span>
-          <span><strong>ब्रह्मस्थान:</strong> केंद्र स्थल पर दीवार, पिलर या भारी निर्माण से ऊर्जा प्रवाह बाधित</span>
+        <div class="vastu-simple-item">
+          <span class="vastu-simple-x">✕</span>
+          <span>घर का केंद्र (ब्रह्मस्थान) भारी होना</span>
         </div>
-        <div class="vastu-copy-item">
-          <span class="vastu-copy-item-cross">✕</span>
-          <span><strong>रसोई व मुख्य शयनकक्ष:</strong> गलत दिशा में होने से पारिवारिक अशांति व आर्थिक क्षरण</span>
+        <div class="vastu-simple-item">
+          <span class="vastu-simple-x">✕</span>
+          <span>किचन या बेडरूम गलत जगह</span>
         </div>
-        <div class="vastu-copy-item">
-          <span class="vastu-copy-item-cross">✕</span>
-          <span><strong>पंचतत्व असंतुलन:</strong> जल, अग्नि, वायु और पृथ्वी तत्वों का परस्पर टकराव</span>
+        <div class="vastu-simple-item">
+          <span class="vastu-simple-x">✕</span>
+          <span>बिना तोड़-फोड़ ठीक न कर पाना</span>
         </div>
       </div>
 
-      <div class="vastu-cost-alert">
-        👉 <strong>स्मरण रहे:</strong> निर्माण के उपरांत तोड़-फोड़ अथवा सुधार करना अत्यंत <strong>कठिन, तनावपूर्ण और अत्यधिक खर्चीला</strong> सिद्ध होता है।
+      <div class="vastu-callout-strip">
+        💡 <strong>बाद में तोड़-फोड़ करने से अच्छा है, आज ही सही जानकारी होना।</strong> यह प्रैक्टिकल बुक आपको हर कमरे का वास्तु खुद जाँचना सिखाती है — बिना किसी महंगे एक्सपर्ट के।
       </div>
 
-      <div class="vastu-solution-banner">
-        <span class="vastu-solution-pill">निर्णय की प्रामाणिकता</span>
-        <div style="font-size: 16px; font-weight: 800; margin-bottom: 6px;">
-          अनुमान पर आधारित भ्रम छोड़ें — प्रमाणित नियमों से सशक्त निर्णय लें
-        </div>
-        <p style="margin: 0; font-size: 14px;">
-          यह कोई साधारण पुस्तक नहीं, अपितु निर्माण और विन्यास की एक <strong>सटीक कार्यप्रणाली (Step-by-Step Blueprint Guide)</strong> है, जो आपको बिना किसी तीसरे व्यक्ति पर निर्भर हुए अपने परिसर का संपूर्ण वास्तु परीक्षण स्वयं करना सिखाती है।
-        </p>
-      </div>
-
-      <div class="vastu-takeaway-banner">
-        <div style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">
-          ⏳ समय रहते यह ज्ञान क्यों अपरिहार्य है?
-        </div>
-        <p style="margin: 0 0 10px 0; font-size: 14px;">
-          जीवन में सपनों का घर बार-बार नहीं बनता — किंतु एक असावधानीपूर्ण निर्णय वर्षों तक सुख, शांति व संचित पूँजी को प्रभावित कर सकता है।
-        </p>
-        <div style="font-size: 14.5px; font-weight: 700; margin-bottom: 12px;">
-          👉 <span class="vastu-tag-mark">समय पर सही वैज्ञानिक जानकारी = जीवनभर की निश्चिंतता एवं लाखों की बचत</span>
-        </div>
-        <div style="background: #f1f5f9; padding: 10px 14px; border-radius: 8px; font-size: 14px;">
-          <strong>अब चुनाव आपका है:</strong> क्या अनिश्चितताओं और सुनी-सुनाई बातों के भरोसे रहना है… अथवा वास्तु के प्रामाणिक ज्ञान के साथ सुरक्षित भविष्य रचना है?
-        </div>
+      <div class="vastu-cta-line">
+        👉 <strong>घर बार-बार नहीं बनता:</strong> सही निर्णय लें और सालों की मानसिक शांति व लाखों की बचत पाएं।
       </div>
     </div>
     {% endif %}
