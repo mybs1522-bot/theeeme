@@ -35,24 +35,16 @@
   <!-- Vastu Page Motion Slider -->
   <div class="vastu-pages-slider-wrap" onclick="scrollToProductReviews(event);">
     <div class="vastu-pages-slider-track">
-      {% for media in product.media %}
+      {% for i in (1..8) %}
+        {% assign asset_name = 'vastu-page-' | append: i | append: '.png' %}
         <div class="vastu-page-item">
-          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+          <img src="{{ asset_name | asset_url }}" alt="Vastu Book Page {{i}}" loading="lazy" />
         </div>
       {% endfor %}
-      {% for media in product.media %}
+      {% for i in (1..8) %}
+        {% assign asset_name = 'vastu-page-' | append: i | append: '.png' %}
         <div class="vastu-page-item">
-          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
-        </div>
-      {% endfor %}
-      {% for media in product.media %}
-        <div class="vastu-page-item">
-          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
-        </div>
-      {% endfor %}
-      {% for media in product.media %}
-        <div class="vastu-page-item">
-          <img src="{{ media | img_url: '400x' }}" alt="{{ media.alt | escape }}" loading="lazy" />
+          <img src="{{ asset_name | asset_url }}" alt="Vastu Book Page {{i}}" loading="lazy" />
         </div>
       {% endfor %}
     </div>
