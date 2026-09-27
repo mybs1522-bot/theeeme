@@ -1,3 +1,15 @@
+
+{% if product.handle contains 'vastu' %}
+<style>
+  @media (min-width: 768px) {
+    .gallery.gallery__default {
+      position: sticky !important;
+      top: 100px !important;
+      align-self: flex-start !important;
+    }
+  }
+</style>
+{% endif %}
 <div class="arch-image-top-bar">
   <span class="arch-image-top-bar__text">
     Made with <span class="arch-heart-emoji">❤️</span> for Home Owners, Interior Designers &amp; Architects
