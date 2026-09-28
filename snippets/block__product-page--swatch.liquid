@@ -86,7 +86,7 @@
                         <span class="lazyload swatch--color" {%-render 'swatch__custom-finder', value: value, colorImages: colorImages, useImages: useImages, ix: ix -%} data-swatch-option="{{value| escape}}" data-swatch-index="{{product.id}}-{{index}}" {% unless is_available %}data-swatch-soldout="true"{% endunless %}></span>
                     {% else %}
                         <div class="luxury-swatch-card {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}is-popular{% endif %}" data-swatch-option="{{value| escape}}" data-swatch-index="{{product.id}}-{{index}}" {% unless is_available %}data-swatch-soldout="true"{% endunless %}>
-                            {% if product.handle contains 'vastu' and product.handle contains 'english' == false %}
+                            {% assign is_vastu_hi = false %}{% if product.handle contains 'vastu' %}{% unless product.handle contains 'english' %}{% assign is_vastu_hi = true %}{% endunless %}{% endif %}{% if is_vastu_hi %}
                                 {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}
                                     <div class="luxury-card-badge">★ तुरंत पाएं</div>
                                 {% elsif value contains 'Hard' or value == 'Hardcopy' %}
