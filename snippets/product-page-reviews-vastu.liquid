@@ -408,7 +408,7 @@
 
   <!-- Header Controls -->
   <div class="bstr-rev-controls-bar">
-    <div class="bstr-rev-total-label" id="bstrRevHeaderCount">दिखा रहे हैं 1–6 में से 436 Reviews</div>
+    <div class="bstr-rev-total-label" id="bstrRevHeaderCount">{% if product.handle contains 'english' %}Showing 1–6 of 436 Reviews{% else %}दिखा रहे हैं 1–6 में से 436 Reviews{% endif %}</div>
     <div>
       <select class="bstr-rev-sort-select" onchange="bstrChangeSort(this.value)">
         <option value="recent">Most Recent</option>
@@ -430,7 +430,17 @@
   
   <script>
     (function() {
-      var ALL_REVIEWS = [
+            var ALL_REVIEWS_EN = [
+        { s: 5, ed: 1, loc: "Delhi, India", d: "2 days ago", name: "Amit Sharma", h: 34, t: "Must-have handbook for every homeowner", b: "Before building, we had endless anxiety about Vastu, and internet advice only caused confusion. This manual is direct, logical, and practical. The non-demolition remedies using colors, elements, and zoning are nothing short of brilliant!" },
+        { s: 5, ed: 2, loc: "Mumbai, India", d: "1 week ago", name: "Sameer Desai", h: 12, t: "Worth 100x the investment", b: "Finding how to fix Vastu defects in a rented apartment was nearly impossible until this book. It includes a dedicated section for apartments and rentals. Clear direction maps and element balances. Essential for any homeowner or interior designer." },
+        { s: 5, ed: 1, loc: "Pune, India", d: "2 weeks ago", name: "Neha Patel", h: 8, t: "Effortless to understand", b: "I had zero prior Vastu knowledge. But the way the 16 cardinal zones and 32 entrance gates are broken down with visual floorplan diagrams made everything crystal clear. I can now verify any floor plan myself." },
+        { s: 5, ed: 2, loc: "Bengaluru, India", d: "1 month ago", name: "Rohit Singh", h: 45, t: "Accurate and scientifically grounded", b: "Locating the exact Brahmasthan always felt overwhelming. The simple geometric formula in this book made it effortless. Fixing energy flow through colors and element alignment without expensive idols or demolition is pure gold." },
+        { s: 4, ed: 1, loc: "Ahmedabad, India", d: "1 month ago", name: "Kavita Shah", h: 19, t: "Superb print and actionable advice", b: "The book quality is exceptional and the diagrams are crisp. Delivery was prompt. We implemented the North wealth-zone remedies and the home feels noticeably more harmonious and positive." },
+        { s: 5, ed: 1, loc: "Jaipur, India", d: "2 months ago", name: "Sunil Verma", h: 22, t: "Essential standard for interior designers", b: "As an interior designer, clients constantly ask for Vastu-compliant layouts. This manual stays on my desk daily. The room-by-room element and color charts save countless hours of second-guessing." },
+        { s: 5, ed: 2, loc: "Lucknow, India", d: "3 months ago", name: "Deepak Tiwari", h: 15, t: "100% logical and practical", b: "Zero superstition, purely logical spatial principles. The guidelines for kitchen placement, bathroom drainage, and master bedroom stability answered every question we had." }
+      ];
+
+      var ALL_REVIEWS_HI = [
         { s: 5, ed: 1, loc: "Delhi", d: "2 days ago", name: "अमित शर्मा", h: 34, t: "हर घर के लिए ज़रूरी किताब", b: "घर बनवाने से पहले वास्तु की बहुत चिंता थी, पर इंटरनेट पर आधी-अधूरी जानकारी से और कन्फ्यूज़न हो रहा था। यह किताब एकदम पॉइंट-टू-पॉइंट है। बिना तोड़-फोड़ के वास्तु सुधारने के जो उपाय दिए हैं, वे सच में कमाल के हैं!" },
         { s: 5, ed: 2, loc: "Mumbai", d: "1 week ago", name: "समीर देसाई", h: 12, t: "पैसों की पूरी वसूली", b: "किराये के घर में वास्तु दोष कैसे ठीक करें, ये मुझे कहीं नहीं मिल रहा था। इस किताब में किराये के घरों के लिए अलग से एक सेक्शन है। रंग और दिशाओं का कॉम्बिनेशन बहुत सरल भाषा में समझाया गया है। हर इंटीरियर डिज़ाइनर और होमओनर को इसे ज़रूर पढ़ना चाहिए।" },
         { s: 5, ed: 1, loc: "Pune", d: "2 weeks ago", name: "नेहा पटेल", h: 8, t: "बहुत ही सरल भाषा", b: "मुझे वास्तु का बिल्कुल भी ज्ञान नहीं था। पर इस किताब में जिस तरह से 16 दिशाओं और 32 द्वारों को डायग्राम के साथ समझाया है, उससे सब कुछ साफ हो गया। अब मैं अपने घर का वास्तु खुद चेक कर पा रही हूँ।" },
@@ -460,6 +470,7 @@
 
       function renderPage(page) {
         currentPage = page;
+        var isEnglish = window.location.pathname.indexOf('english') !== -1;
         var data = getSortedReviews();
         var totalPages = Math.ceil(data.length / REVIEWS_PER_PAGE);
         if (currentPage < 1) currentPage = 1;

@@ -356,71 +356,139 @@
     </style>
 
     <div class="vastu-flow-box">
-      <!-- 1. Top Hook Headline -->
-      <div class="vastu-flow-hero">
-        अपने घर का वास्तु चेक और सही करें, <span class="vastu-hl-tag">रहने से पहले या रहने के बाद मौका अभी भी है।</span>
-      </div>
-
-      <!-- 2. Problem Warning -->
-      <div class="vastu-alert-chip">
-        🚨 घर बनाने या खरीदने से पहले यह जरूर जानें…
-      </div>
-
-      <div class="vastu-flow-lead">
-        कई लोग बिना जांच के घर ले लेते हैं — और बाद में पता चलता है:
-      </div>
-
-      <ul class="vastu-flow-mistakes">
-        <li>
-          <span class="vastu-x-icon">✕</span>
-          <span>एंट्रेंस गलत दिशा में है</span>
-        </li>
-        <li>
-          <span class="vastu-x-icon">✕</span>
-          <span>ब्रह्मस्थान ब्लॉक हो चुका है</span>
-        </li>
-        <li>
-          <span class="vastu-x-icon">✕</span>
-          <span>किचन या बेडरूम गलत जगह है</span>
-        </li>
-        <li>
-          <span class="vastu-x-icon">✕</span>
-          <span>पूरे घर की ऊर्जा असंतुलित है</span>
-        </li>
-      </ul>
-
-      <div class="vastu-warn-strip">
-        👉 और तब सुधार करना <strong>महंगा + मुश्किल</strong> हो जाता है।
-      </div>
-
-      <!-- 3. Solution -->
-      <div class="vastu-solution-chip">
-        ✅ अब अंदाज़ा नहीं — सही ज्ञान के साथ निर्णय लें
-      </div>
-
-      <div class="vastu-solution-text">
-        यह कोई सामान्य वास्तु बुक नहीं है। यह एक <strong>Practical Step-by-Step Guide</strong> है जो आपको सिखाती है:<br>
-        <strong>👉 अपने घर का वास्तु खुद कैसे चेक करें</strong>
-      </div>
-
-      <!-- 4. Why Today & Decision -->
-      <div class="vastu-why-chip">
-        ⏳ आज ही क्यों लें?
-      </div>
-
-      <div style="font-size: 13px; margin-bottom: 8px; padding-left: 4px;">
-        घर एक बार बनता है — लेकिन गलत फैसला सालों तक असर डालता है।<br>
-        <strong>👉 सही समय पर सही जानकारी = बड़ी बचत</strong>
-      </div>
-
-      <div class="vastu-closing-card">
-        <div style="font-weight: 700; margin-bottom: 4px; font-size: 13.5px;">
-          🚀 अब फैसला आपका है
+      {% if product.handle contains 'english' %}
+        <!-- 1. Top Hook Headline -->
+        <div class="vastu-flow-hero">
+          Inspect and perfect your home’s Vastu — <span class="vastu-hl-tag">before moving in or after living there, you still have the opportunity.</span>
         </div>
-        <div>
-          अंदाज़े से काम करना है… या <strong>सही ज्ञान के साथ?</strong>
+
+        <!-- 2. Problem Warning -->
+        <div class="vastu-alert-chip">
+          🚨 Essential knowledge before building or purchasing a home…
         </div>
-      </div>
+
+        <div class="vastu-flow-lead">
+          Many buy without inspection — only to realize critical flaws later:
+        </div>
+
+        <ul class="vastu-flow-mistakes">
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>Main entrance located in an adverse direction</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>Brahmasthan (energy center) obstructed by heavy structures</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>Kitchen or bedroom placed in conflicting zones</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>Energy circulation throughout the home is imbalanced</span>
+          </li>
+        </ul>
+
+        <div class="vastu-warn-strip">
+          👉 And rectifying post-construction becomes <strong>expensive + stressful</strong>.
+        </div>
+
+        <!-- 3. Solution -->
+        <div class="vastu-solution-chip">
+          ✅ No guesswork — make decisions backed by verified knowledge
+        </div>
+
+        <div class="vastu-solution-text">
+          This is not an abstract theory book. It is a <strong>Practical Step-by-Step Guide</strong> that teaches you:<br>
+          <strong>👉 How to inspect your home's Vastu independently</strong>
+        </div>
+
+        <!-- 4. Why Today & Decision -->
+        <div class="vastu-why-chip">
+          ⏳ Why acquire this today?
+        </div>
+
+        <div style="font-size: 13px; margin-bottom: 8px; padding-left: 4px;">
+          A home is built once in a lifetime — but mistakes impact comfort for decades.<br>
+          <strong>👉 The right knowledge at the right time = massive long-term savings</strong>
+        </div>
+
+        <div class="vastu-closing-card">
+          <div style="font-weight: 700; margin-bottom: 4px; font-size: 13.5px;">
+            🚀 The choice is yours
+          </div>
+          <div>
+            Rely on assumptions… or <strong>build with verified Vastu precision?</strong>
+          </div>
+        </div>
+      {% else %}
+        <!-- 1. Top Hook Headline -->
+        <div class="vastu-flow-hero">
+          अपने घर का वास्तु चेक और सही करें, <span class="vastu-hl-tag">रहने से पहले या रहने के बाद मौका अभी भी है।</span>
+        </div>
+
+        <!-- 2. Problem Warning -->
+        <div class="vastu-alert-chip">
+          🚨 घर बनाने या खरीदने से पहले यह जरूर जानें…
+        </div>
+
+        <div class="vastu-flow-lead">
+          कई लोग बिना जांच के घर ले लेते हैं — और बाद में पता चलता है:
+        </div>
+
+        <ul class="vastu-flow-mistakes">
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>एंट्रेंस गलत दिशा में है</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>ब्रह्मस्थान ब्लॉक हो चुका है</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>किचन या बेडरूम गलत जगह है</span>
+          </li>
+          <li>
+            <span class="vastu-x-icon">✕</span>
+            <span>पूरे घर की ऊर्जा असंतुलित है</span>
+          </li>
+        </ul>
+
+        <div class="vastu-warn-strip">
+          👉 और तब सुधार करना <strong>महंगा + मुश्किल</strong> हो जाता है।
+        </div>
+
+        <!-- 3. Solution -->
+        <div class="vastu-solution-chip">
+          ✅ अब अंदाज़ा नहीं — सही ज्ञान के साथ निर्णय लें
+        </div>
+
+        <div class="vastu-solution-text">
+          यह कोई सामान्य वास्तु बुक नहीं है। यह एक <strong>Practical Step-by-Step Guide</strong> है जो आपको सिखाती है:<br>
+          <strong>👉 अपने घर का वास्तु खुद कैसे चेक करें</strong>
+        </div>
+
+        <!-- 4. Why Today & Decision -->
+        <div class="vastu-why-chip">
+          ⏳ आज ही क्यों लें?
+        </div>
+
+        <div style="font-size: 13px; margin-bottom: 8px; padding-left: 4px;">
+          घर एक बार बनता है — लेकिन गलत फैसला सालों तक असर डालता है।<br>
+          <strong>👉 सही समय पर सही जानकारी = बड़ी बचत</strong>
+        </div>
+
+        <div class="vastu-closing-card">
+          <div style="font-weight: 700; margin-bottom: 4px; font-size: 13.5px;">
+            🚀 अब फैसला आपका है
+          </div>
+          <div>
+            अंदाज़े से काम करना है… या <strong>सही ज्ञान के साथ?</strong>
+          </div>
+        </div>
+      {% endif %}
     </div>
     {% endif %}
 

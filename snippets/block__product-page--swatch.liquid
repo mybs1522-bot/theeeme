@@ -86,7 +86,7 @@
                         <span class="lazyload swatch--color" {%-render 'swatch__custom-finder', value: value, colorImages: colorImages, useImages: useImages, ix: ix -%} data-swatch-option="{{value| escape}}" data-swatch-index="{{product.id}}-{{index}}" {% unless is_available %}data-swatch-soldout="true"{% endunless %}></span>
                     {% else %}
                         <div class="luxury-swatch-card {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}is-popular{% endif %}" data-swatch-option="{{value| escape}}" data-swatch-index="{{product.id}}-{{index}}" {% unless is_available %}data-swatch-soldout="true"{% endunless %}>
-                            {% if product.handle contains 'vastu' %}
+                            {% if product.handle contains 'vastu' and product.handle contains 'english' == false %}
                                 {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}
                                     <div class="luxury-card-badge">★ तुरंत पाएं</div>
                                 {% elsif value contains 'Hard' or value == 'Hardcopy' %}
@@ -119,7 +119,19 @@
                                         {% endif %}
                                     </div>
                                     <span class="luxury-card-subtitle">
-                                        {% if product.handle contains 'vastu' %}
+                                        {% if product.handle contains 'vastu' and product.handle contains 'english' %}
+                                            {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}
+                                                ⚡ Instant PDF Download · 150+ Pages
+                                            {% elsif value == 'Hardcopy' or value contains 'Hard' %}
+                                                {% if is_available %}
+                                                    📦 Printed Book Delivered to Your Doorstep
+                                                {% else %}
+                                                    📦 Printed Book (Currently Out of Stock)
+                                                {% endif %}
+                                            {% else %}
+                                                Full Access Edition
+                                            {% endif %}
+                                        {% elsif product.handle contains 'vastu' %}
                                             {% if value contains 'Digital' or value contains 'E-Book' or value contains 'E-book' or value contains 'eBook' %}
                                                 ⚡ PDF हिंदी में डाउनलोड
                                             {% elsif value == 'Hardcopy' or value contains 'Hard' %}
